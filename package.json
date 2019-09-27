@@ -1,5 +1,5 @@
 {
-  "name": "mcf-react-scripts",
+  "name": "@mcf/mcf-react-scripts",
   "version": "0.1.0",
   "main": "src/index.js",
   "description": "Configuration and scripts for Create React App.",
