@@ -103,10 +103,9 @@ module.exports = function(
     electron:
       'set ELECTRON_ENABLE_LOGGING=true && electron client.js --debug &',
     package:
-      'node_modules/.bin/electron-packager build application  --electronVersion=1.7.5 --platform=darwin   --out=releases  --overwrite ',
+      `node_modules/.bin/electron-packager build ${appName}  --electronVersion=1.7.5 --platform=darwin   --out=releases  --overwrite `,
   };
 
-  appPackage.api = 'API_PREFIX';
 
   appPackage.devDependencies ={
     "babel-plugin-add-module-exports": "^1.0.2",
@@ -130,7 +129,16 @@ module.exports = function(
   appPackage.module = 'dist/cjs/index.js';
   appPackage.main = 'dist/cjs/index.js';
   appPackage.private = false;
-  appPackage.config = { api_prefix: '/' };
+  appPackage.files=[
+    "dist",
+    "public",
+    "src",
+    "README.md"
+  ],
+  appPackage.config = {
+    "API_SERVER": "/",
+    "MOCK_SERVER": "/mock"
+  };
   fs.writeFileSync(
     path.join(appPath, 'package.json'),
     JSON.stringify(appPackage, null, 2) + os.EOL
@@ -220,7 +228,7 @@ function next({
     args = ['add'];
   } else {
     command = 'npm';
-    args = ['install', '--save', '--save-exact', verbose && '--verbose'].filter(
+    args = ['install', '--save-exact', verbose && '--verbose'].filter(
       e => e
     );
   }
@@ -292,15 +300,15 @@ function next({
   console.log(chalk.cyan(`  ${displayedCommand} test`));
   console.log('    Starts the test runner.');
   console.log();
-  console.log(
-    chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)
-  );
-  console.log(
-    '    Removes this tool and copies build dependencies, configuration files'
-  );
-  console.log(
-    '    and scripts into the app directory. If you do this, you can’t go back!'
-  );
+  // console.log(
+  //   chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}eject`)
+  // );
+  // console.log(
+  //   '    Removes this tool and copies build dependencies, configuration files'
+  // );
+  // console.log(
+  //   '    and scripts into the app directory. If you do this, you can’t go back!'
+  // );
   console.log();
   console.log('We suggest that you begin by typing:');
   console.log();

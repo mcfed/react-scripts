@@ -57,6 +57,17 @@ export default class ListView extends ListPage {
 				</Button>
 		  </ButtonGroups>)
   }
+  renderTableButtonGroups(text,row){
+    const { locale } = this.props
+    return (
+      <ButtonGroups handleClick={this.handlerMenu.bind(this,row.id)} size="small">
+        <Button actionkey="edit">{locale("GLOBAL.MODIFY")}</Button>
+        <Button actionkey="detail">{locale("GLOBAL.DETAIL")}</Button>
+        <Button actionkey="delete" confirm={locale('delete.confirm')}>
+          {locale("GLOBAL.REMOVE")}</Button>
+      </ButtonGroups>
+    )
+  }
   renderDataTable() {
     const { reducer: { page }, items, actions, spins, locale } = this.props
     const query = this.searchParams()
@@ -79,14 +90,7 @@ export default class ListView extends ListPage {
         key: "options",
         dataIndex: "options",
         width: 190,
-        render: (text, row, index) => (
-          <ButtonGroups handleClick={this.handlerMenu.bind(this,row.id)} size="small">
-						<Button actionkey="edit">{locale("GLOBAL.MODIFY")}</Button>
-						<Button actionkey="detail">{locale("GLOBAL.DETAIL")}</Button>
-						<Button actionkey="delete" confirm={locale('delete.confirm')}>
-              {locale("GLOBAL.REMOVE")}</Button>
-					</ButtonGroups>
-        )
+        render: this.renderTableButtonGroups 
       }]
     }
     

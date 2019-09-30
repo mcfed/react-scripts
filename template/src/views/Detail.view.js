@@ -16,32 +16,39 @@ export default class DetailView extends ViewPage {
   handleCancel(values) {
     this.goBack();
   }
+  renderPanelFooter(){
+    const {  locale } = this.props;
 
+    return (
+      <Button
+        type="primary"
+        onClick={this.handleCancel.bind(this, 'handleCancel')}
+      >
+        {locale('GLOBAL.BACK')}
+      </Button>
+    )
+  }
   render() {
     const { item, locale } = this.props;
     const basic = item.basic || {};
     const source = [
+      {@#columns@}
       {
-        name: locale('serverName.label'),
-        value: basic.serverName,
+        label: locale('{@name@}.label'),
+        value: basic.{@name@},
       },
+      {@/columns@}
     ];
 
     return (
       <Panel
         title={locale('GLOBAL.DETAIL')}
-        footer={() => (
-          <Button
-            type="primary"
-            onClick={this.handleCancel.bind(this, 'handleCancel')}
-          >
-            {locale('GLOBAL.BACK')}
-          </Button>
-        )}
+        footer={this.renderPanelFooter}
       >
         <DetailTable
           title={locale('baseInfo.title')}
           dataSource={source}
+          labelKey="label"
           columnNumber={2}
         />
       </Panel>
