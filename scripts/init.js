@@ -105,8 +105,6 @@ module.exports = function(
     package:
       `node_modules/.bin/electron-packager build ${appName}  --electronVersion=1.7.5 --platform=darwin   --out=releases  --overwrite `,
   };
-
-
   appPackage.devDependencies ={
     "babel-plugin-add-module-exports": "^1.0.2",
     "enzyme": "^3.10.0",
