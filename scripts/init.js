@@ -99,6 +99,7 @@ module.exports = function(
     start: 'react-scripts start',
     build: 'react-scripts build',
     test: 'react-scripts test',
+    coverage: 'CI=true react-scripts test --coverage',
     eject: 'react-scripts eject',
     electron:
       'set ELECTRON_ENABLE_LOGGING=true && electron client.js --debug &',
@@ -106,6 +107,10 @@ module.exports = function(
       `node_modules/.bin/electron-packager build ${appName}  --electronVersion=1.7.5 --platform=darwin   --out=releases  --overwrite `,
   };
   appPackage.devDependencies ={
+    "husky": "^2.3.0",
+    "lint-staged": "8.0.0",
+    "prettier": "^1.14.3",
+    "pretty-quick": "^1.4.1",
     "babel-plugin-add-module-exports": "^1.0.2",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
@@ -113,7 +118,7 @@ module.exports = function(
     "jest-fetch-mock": "^2.1.2",
     "mcf-module": "^1.3.2",
     "react-intl": "^3.1.11"
-  } 
+  }
   // Setup the eslint config
   appPackage.eslintConfig = {
     extends: 'react-app',
