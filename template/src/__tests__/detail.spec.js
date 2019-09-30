@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { Button} from 'antd';
 import DetailView from '../views/Detail.view';
 
 function setup(props, options) {
@@ -40,6 +41,15 @@ describe('方法测试全覆盖', () => {
       search: '123456',
     },
   };
+
+  it('renderPanelFooter 方法测试', () => {
+    const { wrapper } = setup(props);
+    const instance = wrapper.instance();
+
+    const pf = shallow(instance.renderPanelFooter())
+    
+    expect(pf.instance()).toBeInstanceOf(Button)
+  })
   it('handleCancel 方法测试', () => {
     const { wrapper } = setup(props);
     const instance = wrapper.instance();

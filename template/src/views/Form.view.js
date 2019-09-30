@@ -1,10 +1,9 @@
 import React from 'react'
-import {Input,Select} from 'antd'
+import {Input} from 'antd'
 import {FormPage} from 'mcf-crud'
 import {BaseForm,FormItem,Panel} from 'mcf-components'
 
 export default class FormView extends FormPage{
-
 	componentDidMount(){
 		const {actions,match:{params}}=this.props
 		if(params.id){
@@ -30,9 +29,9 @@ export default class FormView extends FormPage{
 						<Input type="hidden"  name="id"  defaultValue={item.id}/>
 					</FormItem>
 					{@#columns@}
-						<FormItem>
-							<Input label={locale('{@name@}.label')}  name="{@name@}"  defaultValue={item.{@name@}}/>
-						</FormItem>
+          <FormItem>
+            <Input label={locale('{@name@}.label')}  name="{@name@}"  defaultValue={item.{@name@}}/>
+          </FormItem>
 				  {@/columns@}
 				</BaseForm>
 			</Panel>

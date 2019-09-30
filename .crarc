@@ -1,6 +1,7 @@
 
 module.exports = {
-  "namespace": "test", //sdfadf
+  "desc":"descriptions",
+  "namespace": "test", 
   "modulePath": 'src/modules',
   "api_prefix":"api_prefix",
   "columns":[

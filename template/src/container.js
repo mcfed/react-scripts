@@ -10,7 +10,7 @@ import { ModuleContainer, ModuleModel } from 'mcf-module';
 const { connect, bindActionCreators, defaultMergeProps } = ModuleContainer;
 const { reducerItemSelector, reducerListSelector } = ModuleModel;
 
-const mapStateToProps = (state, props) => {
+export const mapStateToProps = (state, props) => {
   return {
     intl: props.intl,
     appReducer: state.appReducer,
@@ -26,7 +26,7 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, props) => {
+export const mapDispatchToProps = (dispatch, props) => {
   return {
     actions: bindActionCreators(sagaActions, dispatch),
     dispatch,

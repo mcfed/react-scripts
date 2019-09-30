@@ -69,6 +69,15 @@ describe('方法测试全覆盖', () => {
       item.label
     );
   });
+
+  it('renderTableButtonGroups',()=>{
+    const { wrapper } = setup(props, { disableLifecycleMethods: true });
+    const tbgInstance = shallow(wrapper.instance().renderTableButtonGroups(null,{id:1}))
+    expect(tbgInstance.find('Button[actionkey="edit"]').exists()).toEqual(true)
+    expect(tbgInstance.find('Button[actionkey="detail"]').exists()).toEqual(true)
+    expect(tbgInstance.find('Button[actionkey="delete"]').exists()).toEqual(true)
+  })
+
   it('handlerMenu 测试ActionType undefined', () => {
     const { wrapper } = setup(props);
     const instance = wrapper.instance();
