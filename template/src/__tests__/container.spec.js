@@ -2,7 +2,7 @@ import * as Container from '../container'
 
 describe('container 组件测试', () => {
 
-  it('container mapStateToProps ',()=>{
+  xit('container mapStateToProps ',()=>{
     const state={
       appReducer:{},
       fetchingReducer:{},

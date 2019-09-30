@@ -17,7 +17,7 @@ export default class DetailView extends ViewPage {
     this.goBack();
   }
   renderPanelFooter(){
-    const {  locale } = this.props;
+    const { locale } = this.props;
 
     return (
       <Button
