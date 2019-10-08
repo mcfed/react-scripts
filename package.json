@@ -1,6 +1,6 @@
 {
   "name": "@mcf/react-scripts",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "main": "src/index.js",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
@@ -61,6 +61,8 @@
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.8.0",
     "jest-watch-typeahead": "0.3.1",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "0.5.0",
     "mustache": "3.0.3",
     "optimize-css-assets-webpack-plugin": "5.0.3",
