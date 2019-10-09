@@ -90,6 +90,10 @@ module.exports = function(webpackEnv) {
   const getStyleLoaders = (cssOptions, preProcessor) => {
     const loaders = [
       isEnvDevelopment && require.resolve('style-loader'),
+      isEnvProduction && {
+        loader: MiniCssExtractPlugin.loader,
+        options: shouldUseRelativeAssetPaths ? { publicPath: '../../' } : {},
+      },
       {
         loader: require.resolve('css-loader'),
         options: cssOptions,
@@ -223,6 +227,22 @@ module.exports = function(webpackEnv) {
     optimization: {
       minimize: false,
       minimizer: [
+        new OptimizeCSSAssetsPlugin({
+          cssProcessorOptions: {
+            parser: safePostCssParser,
+            map: shouldUseSourceMap
+              ? {
+                // `inline: false` forces the sourcemap to be output into a
+                // separate file
+                inline: false,
+                // `annotation: true` appends the sourceMappingURL to the end of
+                // the css file, helping the browser find the sourcemap
+                annotation: true,
+              }
+              : false,
+          },
+        }),
+
       ],
       // //   // Automatically split vendor and commons
       // //   // https://twitter.com/wSokra/status/969633336732905474
@@ -651,6 +671,14 @@ module.exports = function(webpackEnv) {
       //   //       new RegExp('/[^/?]+\\.[^/]+$'),
       //   //     ],
       //   //   }),
+        isEnvProduction &&
+        new MiniCssExtractPlugin({
+          // Options similar to the same options in webpackOptions.output
+          // both options are optional
+          filename: '[name].css',
+          // chunkFilename: '[name].chunk.css',
+        }),
+
       //   // TypeScript type checking
       //   // useTypeScript &&
       //   //   new ForkTsCheckerWebpackPlugin({
