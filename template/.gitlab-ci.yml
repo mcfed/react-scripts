@@ -19,15 +19,14 @@ build_job:
     - master
   tags:
     - master
-  coverage: /All files\s*\|\s*([\d\.]+)/
 
 test_job:
   stage: test
   script:
-    - npm run test
+    - npm run test-cov
   tags:
     - master
-    - develop
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
 
 deploy_job:
   stage: deploy
